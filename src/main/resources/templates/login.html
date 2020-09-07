@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Giriş Yap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 mx-auto">
+            <form class="mt-5" th:object="${login}" th:action="@{/login}" method="post">
+                <h4 class="text-center">Giriş Yap</h4>
+                <div class="form-group">
+                    <label for="email">E-postan</label>
+                    <input type="text" class="form-control" id="email" th:field="*{email}"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Şifren</label>
+                    <input type="password" class="form-control" id="password" th:field="*{password}">
+                </div>
+                <button class="btn btn-primary">Giriş Yap</button>
+                <p class="mt-2">Hesabın yok mu? <a href="/register">Buradan kayıt olabilirsin</a>.</p>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

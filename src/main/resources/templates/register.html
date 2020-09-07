@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kayıt Ol</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 mx-auto">
+            <form class="mt-5" th:action="@{/register}" th:object="${register}" method="post">
+                <h4 class="text-center">Kayıt Ol</h4>
+                <div class="form-group">
+                    <label for="fullName">İsmin</label>
+                    <input type="text" class="form-control" id="fullName" th:field="*{fullName}" placeholder="Ad Soyad">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-postan</label>
+                    <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="ben@domain.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Tahmin Edilemez Şifren</label>
+                    <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="En az 8 karakter">
+                </div>
+                <div class="border p-2 mb-2 rounded">
+                    <small class="form-text text-muted mb-2">Bu alanları daha sonra da ekleyebilirsin</small>
+                    <div class="form-group">
+                        <label for="university">Üniversiten</label>
+                        <input type="text" class="form-control" th:field="*{university}" id="university">
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Bölümün</label>
+                        <input type="text" class="form-control" th:field="*{department}" id="department">
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">
+                    Kayıt Ol
+                </button>
+                <p class="mt-2">Zaten hesabın var mı? <a th:href="@{/login}">Buradan giriş yapabilirsin</a>.</p>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
