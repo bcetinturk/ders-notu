@@ -1,4 +1,4 @@
-package com.example.dersnotu.service;
+package com.example.dersnotu.service.user;
 
 import com.example.dersnotu.dto.Register;
 import com.example.dersnotu.entity.User;

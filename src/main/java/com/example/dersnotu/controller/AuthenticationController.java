@@ -3,7 +3,7 @@ package com.example.dersnotu.controller;
 import com.example.dersnotu.dto.Login;
 import com.example.dersnotu.dto.NoteSearch;
 import com.example.dersnotu.dto.Register;
-import com.example.dersnotu.service.UserService;
+import com.example.dersnotu.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
