@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface NoteRepository extends ElasticsearchRepository<Note, String> {
     List<Note> findAllByLectureName(String lectureName, Pageable pageable);
+    List<Note> findAllByOwnerId(String ownerId,  Pageable pageable);
 }

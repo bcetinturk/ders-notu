@@ -34,7 +34,12 @@ public class DefaultNoteService implements NoteService {
     @Override
     public List<Note> searchNote(NoteSearch noteSearch) {
         Pageable pageable = PageRequest.of(0, 20);
-        List<Note> notes = noteRepository.findAllByLectureName(noteSearch.getLectureName(), pageable);
-        return notes;
+        return noteRepository.findAllByLectureName(noteSearch.getLectureName(), pageable);
+    }
+
+    @Override
+    public List<Note> getNotesByOwner(String ownerId) {
+        Pageable pageable = PageRequest.of(0, 20);
+        return noteRepository.findAllByOwnerId(ownerId, pageable);
     }
 }

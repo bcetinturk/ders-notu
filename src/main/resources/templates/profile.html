@@ -36,11 +36,11 @@
             <h4>Kaydettiğim Notlar</h4>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="/ders/1231233"><h6>Ders Adı</h6></a>
+                    <a href="/note/***"><h6>Ders Adı</h6></a>
                     <small class="text-muted">Ekleyen: <a href="/user/61616">Barış Çetintürk</a></small>
                 </li>
                 <li class="list-group-item">
-                    <a href="/ders/1231233"><h6>Ders Adı</h6></a>
+                    <a href="/note/***"><h6>Ders Adı</h6></a>
                     <small class="text-muted">Ekleyen: <a href="/user/61616">Barış Çetintürk</a></small>
                 </li>
             </ul>
@@ -48,12 +48,17 @@
         <div class="col-md-6">
             <h4>Benim Notlarım</h4>
             <a href="/newnote" class="btn btn-primary">Ders Notu Ekle</a>
-            <ul class="list-group mt-3">
+            <ul class="list-group mt-3" th:each="note: ${studentNotes}">
                 <li class="list-group-item">
-                    <a href="/ders/1231233"><h6>Ders Adı</h6></a>
-                </li>
-                <li class="list-group-item">
-                    <a href="/ders/1231233"><h6>Ders Adı</h6></a>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <a th:href="@{/note/{id}(id=${note.getId()})}"><h6 th:text="${note.getLectureName()}"></h6></a>
+                            <small class="text-muted" th:text="${note.getLecturerName()}"></small>
+                        </div>
+                        <div class="col-sm-4">
+                            <small th:text="${#dates.format(note.getCreationDate(), 'dd/MM/yyyy') + ' tarihinde eklendi'}"></small>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
