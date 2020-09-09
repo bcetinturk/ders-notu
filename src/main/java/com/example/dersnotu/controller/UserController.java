@@ -12,6 +12,6 @@ public class UserController {
     public String getProfile(Model model) {
         model.addAttribute("noteSearch", new NoteSearch());
         model.addAttribute("student", new User("123", "Baris", "baris@baris.com", "qwertyuıop", "", "", "https://i.ibb.co/Yp8dK7B/default-profile.png"));
-        return "profile";   // To be added
+        return "profile";
     }
 }
