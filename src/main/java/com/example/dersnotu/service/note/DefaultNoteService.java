@@ -42,4 +42,13 @@ public class DefaultNoteService implements NoteService {
         Pageable pageable = PageRequest.of(0, 20);
         return noteRepository.findAllByOwnerId(ownerId, pageable);
     }
+
+    @Override
+    public Note getNoteById(String noteId) {
+        Note note = noteRepository.findById(noteId).orElseThrow(
+                () -> new RuntimeException("")
+        );
+
+        return note;
+    }
 }

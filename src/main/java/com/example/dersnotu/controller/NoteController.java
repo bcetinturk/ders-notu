@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -40,5 +41,12 @@ public class NoteController {
         model.addAttribute("notes", notes);
 
         return "search";
+    }
+
+    @GetMapping("/note/{id}")
+    public String getNote(@PathVariable String id, Model model) {
+        Note note = noteService.getNoteById(id);
+        model.addAttribute("note", note);
+        return "note";
     }
 }

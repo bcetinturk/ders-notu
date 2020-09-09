@@ -10,4 +10,5 @@ public interface NoteService {
     void addNewNote(NewNote note);
     List<Note> searchNote(NoteSearch noteSearch);
     List<Note> getNotesByOwner(String ownerId);
+    Note getNoteById(String noteId);
 }
