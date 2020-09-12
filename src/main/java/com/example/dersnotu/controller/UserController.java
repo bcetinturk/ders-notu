@@ -1,14 +1,15 @@
 package com.example.dersnotu.controller;
 
 import com.example.dersnotu.dto.NoteSearch;
-import com.example.dersnotu.entity.User;
+import com.example.dersnotu.dto.UserDTO;
 import com.example.dersnotu.service.note.NoteService;
 import com.example.dersnotu.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+
 
 @Controller
 public class UserController {
@@ -23,11 +24,9 @@ public class UserController {
 
     @GetMapping("/profile")
     public String getProfile(Model model) {
-        userService.getUserProfile();
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDTO userDTO = userService.getUserProfile();
         model.addAttribute("noteSearch", new NoteSearch());
-        model.addAttribute("student", user);
-        model.addAttribute("studentNotes", noteService.getNotesByOwner(user.getId()));
+        model.addAttribute("student", userDTO);
         return "profile";
     }
 }

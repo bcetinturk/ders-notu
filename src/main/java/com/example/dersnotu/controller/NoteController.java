@@ -4,6 +4,7 @@ import com.example.dersnotu.dto.NewNote;
 import com.example.dersnotu.dto.NoteSearch;
 import com.example.dersnotu.entity.Note;
 import com.example.dersnotu.service.note.NoteService;
+import com.example.dersnotu.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ import java.util.List;
 @Controller
 public class NoteController {
     NoteService noteService;
+    private UserService userService;
 
     @Autowired
-    public NoteController(NoteService noteService) {
+    public NoteController(NoteService noteService, UserService userService) {
         this.noteService = noteService;
+        this.userService = userService;
     }
 
     @GetMapping("/newnote")
@@ -32,7 +35,7 @@ public class NoteController {
     @PostMapping("/newnote")
     public String handleNewNote(@ModelAttribute("newNote") NewNote newNote) {
         noteService.addNewNote(newNote);
-        return null;
+        return "redirect:/profile";
     }
 
     @GetMapping("/search")
@@ -48,5 +51,11 @@ public class NoteController {
         Note note = noteService.getNoteById(id);
         model.addAttribute("note", note);
         return "note";
+    }
+
+    @GetMapping("/save/{id}")
+    public String saveFavouriteNote(@PathVariable("id") String noteId) {
+        userService.saveNote(noteId);
+        return "redirect:/profile";
     }
 }
