@@ -35,12 +35,8 @@
         <div class="col-md-6 mb-3">
             <h4>Kaydettiğim Notlar</h4>
             <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="/note/***"><h6>Ders Adı</h6></a>
-                    <small class="text-muted">Ekleyen: <a href="/user/61616">Barış Çetintürk</a></small>
-                </li>
-                <li class="list-group-item">
-                    <a href="/note/***"><h6>Ders Adı</h6></a>
+                <li class="list-group-item" th:each="note: ${student.getFavNotes()}">
+                    <a href="/note/***"><h6 th:text="${note}"></h6></a>
                     <small class="text-muted">Ekleyen: <a href="/user/61616">Barış Çetintürk</a></small>
                 </li>
             </ul>

@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class User implements UserDetails {
     private String university;
     private String department;
     private String profilePictureUrl="https://i.ibb.co/Yp8dK7B/default-profile.png";
+    private List<String> favNotes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

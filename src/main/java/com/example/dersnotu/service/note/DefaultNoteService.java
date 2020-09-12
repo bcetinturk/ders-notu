@@ -3,12 +3,14 @@ package com.example.dersnotu.service.note;
 import com.example.dersnotu.dto.NewNote;
 import com.example.dersnotu.dto.NoteSearch;
 import com.example.dersnotu.entity.Note;
+import com.example.dersnotu.entity.User;
 import com.example.dersnotu.repository.NoteRepository;
 import com.example.dersnotu.service.mapper.NoteMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +28,8 @@ public class DefaultNoteService implements NoteService {
     @Override
     public void addNewNote(NewNote newNote) {
         Note note = noteMapper.newNote(newNote);
-        note.setOwnerId("Sample Id");
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        note.setOwnerId(user.getId());
         note = noteRepository.save(note);
         System.out.println(note);
     }
