@@ -4,6 +4,7 @@ import com.example.dersnotu.dto.Register;
 import com.example.dersnotu.dto.UserDTO;
 import com.example.dersnotu.entity.Note;
 import com.example.dersnotu.entity.User;
+import com.example.dersnotu.exception.PasswordsDoNotMatch;
 import com.example.dersnotu.repository.NoteRepository;
 import com.example.dersnotu.repository.UserRepository;
 import com.example.dersnotu.service.mapper.UserMapper;
@@ -72,5 +73,36 @@ public class DefaultUserService implements UserService {
         json.append("]");
 
         return json.toString();
+    }
+
+    @Override
+    public void updateProfile(UserDTO userDTO) throws PasswordsDoNotMatch {
+        User oldUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (userDTO.getPassword1().length() > 0) {
+            if (userDTO.getPassword1().equals(userDTO.getPassword2())) {
+                oldUser.setPassword(userDTO.getPassword1());
+            } else {
+                throw new PasswordsDoNotMatch("");
+            }
+        }
+
+        if (userDTO.getEmail().length() > 0) {
+            oldUser.setEmail(userDTO.getEmail());
+        }
+
+        if (userDTO.getUniversity().length() > 0) {
+            oldUser.setUniversity(userDTO.getUniversity());
+        }
+
+        if (userDTO.getDepartment().length() > 0) {
+            oldUser.setDepartment(userDTO.getDepartment());
+        }
+
+        if (userDTO.getProfilePictureUrl().length() > 0) {
+            oldUser.setProfilePictureUrl(userDTO.getProfilePictureUrl());
+        }
+
+        userRepository.save(oldUser);
     }
 }

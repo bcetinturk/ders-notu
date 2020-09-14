@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head(pageTitle = 'Profili Güncelle')">
+</head>
+<body>
+<script>
+    function urlChanged(event) {
+        const element = document.querySelector("#profilePicture");
+        element.setAttribute("src", event.target.value);
+    }
+</script>
+<div th:replace="fragments/layout.html :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-6 offset-lg-3 offset-md-1">
+            <form th:action="@{/changeProfile}" method="post" th:object="${userDTO}">
+                <div class="form-group">
+                    <label for="email">E-posta</label>
+                    <input type="text" class="form-control" id="email" th:field="*{email}">
+                    <small class="text-secondary">Değiştirmemek için boş bırakın</small>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Şifre</label>
+                    <input type="password" class="form-control" id="password1" th:field="*{password1}">
+                    <small class="text-secondary">Değiştirmemek için boş bırakın</small>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Şifre (tekrar)</label>
+                    <input type="password" class="form-control" id="password2" th:field="*{password2}">
+                </div>
+                <div class="form-group">
+                    <label for="university">Üniversite</label>
+                    <input type="text" class="form-control" id="university" th:field="*{university}">
+                </div>
+                <div class="form-group">
+                    <label for="department">Bölüm</label>
+                    <input type="text" class="form-control" id="department" th:field="*{department}">
+                </div>
+                <div class="form-group">
+                    <label for="profilePictureUrl">Yeni profil resmi URLsi</label>
+                    <input type="text" class="form-control" id="profilePictureUrl" th:field="*{profilePictureUrl}" onfocusout="urlChanged(event)">
+                </div>
+                <span>Ön izleme</span><br>
+                <img src="" alt="Resim bulunmadı" id="profilePicture" class="img-thumbnail" style="max-height: 200px"><br>
+                <button class="btn btn-primary">Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

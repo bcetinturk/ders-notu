@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Yeni Not Ekle</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://cdn.tiny.cloud/1/6slv8x1psdroe043y86dqb7ybykmf55fk40xub5uikxfe158/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#lectureNotes',
-            menubar: false,
-            plugins: 'lists',
-            toolbar: "undo redo | styleselect | h1 h2 h3 h4 h5 h6 | bold italic underline subscript superscript | alignleft aligncenter alignright alignjustify | indent outdent | bullist numlist "
-        });
-    </script>
+<head th:replace="fragments/layout :: head(pageTitle = 'Yeni Not Ekle')">
 </head>
 <body>
+<script src="https://cdn.tiny.cloud/1/6slv8x1psdroe043y86dqb7ybykmf55fk40xub5uikxfe158/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#lectureNotes',
+        menubar: false,
+        plugins: 'lists',
+        toolbar: "undo redo | styleselect | h1 h2 h3 h4 h5 h6 | bold italic underline subscript superscript | alignleft aligncenter alignright alignjustify | indent outdent | bullist numlist "
+    });
+</script>
+<div th:replace="fragments/layout :: header"></div>
 <div class="container">
     <div class="row">
         <div class="col-lg-10 mx-auto">

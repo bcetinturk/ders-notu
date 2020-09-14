@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Profilim</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<head th:replace="fragments/layout :: head(pageTitle = 'Profilim')">
 </head>
 <body>
+<div th:replace="fragments/layout.html :: header"></div>
 <div class="container">
-    <div class="row my-3">
-        <div class="col-md-12">
-            <form class="form-inline" accept-charset="UTF-8" method="get" th:object="${noteSearch}" th:action="@{/search}">
-                <div class="input-group flex-fill">
-                    <input type="search" th:field="*{lectureName}" id="lectureName" placeholder="Ders Adı" class="form-control">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary px-5">Ara</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
     <div class="row my-3">
         <div class="col-md-3 mb-3">
             <img src="https://i.ibb.co/Yp8dK7B/default-profile.png" th:src="${student.getProfilePictureUrl()}" class="img-thumbnail" style="max-width: 200px" alt="profile picture">
@@ -28,7 +13,7 @@
             <h4 th:text="${student.getFullName()}">Ad Soyad</h4>
             <h6 th:text="${student.getUniversity() ?: 'Üniversite belirtilmemiş'}">Üniversite adı</h6>
             <h6 class="text-muted" th:text="${student.getDepartment() ?: 'Bölüm belirtilmemiş'}">Bölüm adı</h6>
-            <a href="/changePicture" class="btn btn-outline-primary">Profil resmini değiştir</a>
+            <a href="/changeProfile" class="btn btn-outline-primary">Profil bilgilerini değiştir</a>
         </div>
     </div>
     <div class="row my-3">
@@ -37,7 +22,7 @@
             <ul class="list-group">
                 <li class="list-group-item" th:each="note: ${student.getFavouriteNotes()}">
                     <a th:href="@{/note/{id}(id=${note.getId()})}"><h6 th:text="${note.getLectureName()}"></h6></a>
-                    <small class="text-muted">Ekleyen: <a th:href="@{/user/{id}(id=${note.ownerId})}">Barış Çetintürk</a></small>
+                    <small class="text-muted" th:text="'Öğretim görevlisi: ' + ${note.getLecturerName()}"></small>
                 </li>
             </ul>
         </div>

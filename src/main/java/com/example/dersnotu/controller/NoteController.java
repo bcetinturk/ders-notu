@@ -29,6 +29,7 @@ public class NoteController {
     @GetMapping("/newnote")
     public String addNewNote(Model model){
         model.addAttribute("newNote", new NewNote());
+        model.addAttribute("noteSearch", new NoteSearch());
         return "newnote";
     }
 
@@ -50,6 +51,7 @@ public class NoteController {
     public String getNote(@PathVariable String id, Model model) {
         Note note = noteService.getNoteById(id);
         model.addAttribute("note", note);
+        model.addAttribute("noteSearch", new NoteSearch());
         return "note";
     }
 

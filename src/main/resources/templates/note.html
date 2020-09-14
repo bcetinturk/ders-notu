@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title th:text="${note.getLectureName()}"></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<head th:replace="fragments/layout :: head(pageTitle = ${note.getLectureName()})">
 </head>
 <body>
+<div th:replace="fragments/layout.html :: header"></div>
 <div class="container my-5">
     <div class="row">
         <div class="col-xs-12">
@@ -13,6 +11,7 @@
             <a th:href="@{/save/{id}(id=${note.getId()})}" class="btn btn-primary">Kaydet</a>
         </div>
     </div>
+    <h1 th:text="${note.getLectureName()}"></h1>
     <div class="jumbotron" th:utext="${note.getLectureNote()}">
     </div>
 </div>

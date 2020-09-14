@@ -9,6 +9,9 @@ import java.util.List;
 public class UserDTO {
     private String id;
     private String fullName;
+    private String email;
+    private String password1;
+    private String password2;
     private String university;
     private String department;
     private String profilePictureUrl;

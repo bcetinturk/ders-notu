@@ -1,24 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Arama Sonuçları</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<head th:replace="fragments/layout :: head(pageTitle = 'Arama Sonuçları')">
 </head>
 <body>
+<div th:replace="fragments/layout.html :: header"></div>
 <div class="container">
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <form class="form-inline" accept-charset="UTF-8" method="get" th:object="${noteSearch}" th:action="@{/search}">
-                <div class="input-group flex-fill">
-                    <input type="search" th:field="*{lectureName}" id="lectureName" placeholder="Ders Adı" class="form-control">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary px-5">Ara</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
     <div class="jumbotron">
         <h1>Sonuçlar</h1>
         <ul class="list-group" th:each="note: ${notes}">
@@ -32,7 +18,6 @@
                         <span th:text="${#dates.format(note.getCreationDate(), 'dd/MM/yyyy') + ' tarihinde eklendi'}"></span>
                     </div>
                 </div>
-                <hr>
             </li>
         </ul>
     </div>
